@@ -13,7 +13,7 @@ class Car:
             self.turned_on=True
             print("Carro encendido")
         else:
-            return"Accion invalida, El carro ya se encuentra encendido"
+            print("Accion invalida, El carro ya se encuentra encendido")
 
     def turn_off(self):
         if self.turned_on==True:
@@ -83,15 +83,4 @@ c1.turn_on()
 print("------------------------------------------------------\n")
 
 c1.drive(426)
-
-
-
-
-"""
-    Cantidad de dinero en un garage
-garage_money=0
-for j in range(len(g1.cars)):
-    garage_money+=g1.cars[i].price
-
-print(f"Valor total del garage es:{garage_money}"""
 
