@@ -190,5 +190,5 @@ lenguaje.get_student_list()
 
 #Implemente la lógica necesaria para que un profesor pueda crear parciales a cursos especificos. Las caracteristicas que tendrán esos parciales incluyen nombre, porcentaje y preguntas. Defina las clases y metodos que considere necesarios.
 
-p1.crear_parciales(coursePoo,"Algebra infernal",12.5,"hola")
+p1.crear_parciales(coursePoo,"Algebra lineal",12.5,"hola")
 
