@@ -192,4 +192,3 @@ lenguaje.get_student_list()
 
 p1.crear_parciales(coursePoo,"Estructuras basicas",12.5,{"Pregunta 1":"Respuestas 1","Pregunta 2":"Respuestas 2","Pregunta 3":"Respuestas 3"})
 
-
