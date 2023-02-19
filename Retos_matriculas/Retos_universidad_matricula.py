@@ -21,13 +21,10 @@ class Student:
       remove_student, get_student_list"""
     
     def enroll_course(self,course):
-        verificar=True
-        for i in range(len(self.student_courses)):
-            if self.student_courses[i]==course: #new
-                verificar=False
-        if verificar==True:
+        if not (course in self.student_courses): 
             self.student_courses.append(course)
-            course.students.append(self)
+            #course.students.append(self)
+            course.enroll_student(self)
             print(f"ESTUDIANTE {self.name_student}, SU CURSO {course.name} FUE MATRICULADO CON EXITO")
         else:
             print(f"ACCION INVALIDA: El estudiante {self.name_student} ya esta matriculado en el curso {course.name} ")
@@ -76,6 +73,11 @@ class Course:
         self.parciales=[]
 
     
+
+    def enroll_student(self,student):
+        self.students.append(student)
+        
+
     def remove_student(self, student):
         if student in self.students:
             self.students.remove(student)
@@ -161,7 +163,7 @@ leonardo.enroll_course(calc)
 #-------------------------------------------------------------------------------------------
 
 print("\n")
-"Usando el metodo get studen list"
+"Usando el metodo get student list"
 coursePoo.get_student_list()
 
 #-------------------------------------------------------------------------------------------
