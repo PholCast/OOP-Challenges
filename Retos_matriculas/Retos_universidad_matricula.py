@@ -9,7 +9,7 @@ En esta aplicación se podrán crear cursos, estudiantes y profesores. Adicional
 
 --> instancien varios objetos de cada clase para que puedan probar"""
 
-
+import random
 class Student:
     def __init__(self,name_student,ID_student):
         self.name_student=name_student #str
@@ -57,7 +57,20 @@ class Professor:
             curso.ingresar_curso(examen)
         else: print("El profesor no esta en este curso, por lo que no puede crear el parcial")
         
-
+    def evaluar_parcial(self,curso,parcial):
+      verificar_parcial=False
+      for k in range(len(curso.parciales)):
+        if parcial==curso.parciales[k].nombre:
+          verificar_parcial=True
+      if self == curso.professor and verificar_parcial:
+        print("VERDADERO")
+        for j in range(len(curso.students)):
+          
+          curso.notas[curso.students[j].name_student][parcial]=round(random.uniform(0,5),2)
+          
+      elif(self == curso.professor and verificar_parcial==False):
+        print(f"ERROR: El parcial {parcial} no se encuentra en el curso {curso.name}")
+      else:print(f"ERROR: {self.name_p} no es el profesor del curso {curso.name} ")
 
 
 
@@ -71,22 +84,25 @@ class Course:
         professor.professor_courses.append(self)
 
         self.parciales=[]
+        self.notas={}
 
     
 
     def enroll_student(self,student):
         self.students.append(student)
-        
+        self.notas[student.name_student]={}
 
     def remove_student(self, student):
         if student in self.students:
             self.students.remove(student)
             print(f"{self.name}: El estudiante {student.name_student} ha sido removido del curso")
+            del self.notas[student.name_student]
         else:
             print(f"El estudiante {student.name_student} no esta matriculado")
 
         if self in student.student_courses:
             student.student_courses.remove(self)
+            
 
 
     def get_student_list(self):
@@ -143,7 +159,6 @@ introduction=Course("Introduccion","44102",p3)
 phol=Student("Phol Castañeda","789")
 neithan=Student("Neithan Gomez","014")
 leonardo=Student("Leonardo Guevara", "658")
-
 #-------------------------------------------------------------------------------------------
 
 "Usando el metodo para matricular"
@@ -169,12 +184,12 @@ coursePoo.get_student_list()
 #-------------------------------------------------------------------------------------------
 
 """Usando el metodo cancelar y remover estudiante"""
-print("\n")
+"""print("\n")
 phol.cancel_course(coursePoo)
 
 phol.cancel_course(coursePoo)
 print("\n")
-coursePoo.remove_student(neithan)
+coursePoo.remove_student(neithan)"""
 
 
 
@@ -193,4 +208,13 @@ lenguaje.get_student_list()
 #Implemente la lógica necesaria para que un profesor pueda crear parciales a cursos especificos. Las caracteristicas que tendrán esos parciales incluyen nombre, porcentaje y preguntas. Defina las clases y metodos que considere necesarios.
 
 p1.crear_parciales(coursePoo,"Estructuras basicas",12.5,{"Pregunta 1":"Respuestas 1","Pregunta 2":"Respuestas 2","Pregunta 3":"Respuestas 3"})
+p1.crear_parciales(coursePoo,"Conceptos basicos POO",12.5,{"Pregunta 1":"Respuestas 1","Pregunta 2":"Respuestas 2","Pregunta 3":"Respuestas 3"})
 
+
+p1.evaluar_parcial(coursePoo,"Estructuras basicas")
+p1.evaluar_parcial(coursePoo,"Conceptos basicos POO")
+"""PARA MOSTRAR LOS PARCIALES DEL CURSO
+
+for mn in range(len(coursePoo.parciales)):
+  print(coursePoo.parciales[mn].nombre)"""
+print(coursePoo.notas)
