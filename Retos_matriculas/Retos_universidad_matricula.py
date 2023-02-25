@@ -350,7 +350,10 @@ calc.definir_estudiantes()
 print("\n\n")
 algebra.definir_estudiantes()
 print("\n\n")
-
+mythology.definir_estudiantes()
+print("\n\n")
+introduction.definir_estudiantes()
+print("\n\n")
 print("------------------------------------------------------------------------------------------------------\n")
 
 #Graficas para ver el rendimiento de cada estudiante
