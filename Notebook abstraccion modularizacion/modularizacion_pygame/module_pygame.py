@@ -8,7 +8,7 @@ WIDTH = 800
 HEIGHT = 600
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
-RED = (0,215,0)
+RED = (255, 36, 0)
  
 game_display = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Blob World")
