@@ -17,4 +17,5 @@ mostrar_menu(menu_restaurante.get_platos())
 
 mario = Subchef("Mario")
 
-mario.cocinar(daniela.pedido(menu_restaurante),despensa)
+orden1=daniela.pedido(menu_restaurante)
+mario.cocinar(orden1,despensa)

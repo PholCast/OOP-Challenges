@@ -36,7 +36,7 @@ class Subchef:
             progreso = 100
             print("Cocinando...")
             for i in tqdm(range(progreso)): #Para crear la barra de carga mientras cocina
-                sleep(0.2)
+                sleep(0.1)
 
             self.entregar()
 
