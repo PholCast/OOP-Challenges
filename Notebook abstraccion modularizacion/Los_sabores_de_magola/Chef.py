@@ -1,13 +1,15 @@
 from dataclasses import dataclass
-from Despensa import despensa
+
+from tqdm import tqdm
+from time import sleep
 @dataclass
 class Chef:
     nombre:str
+    
 
-
-    def verificar_orden(self,plato,despensa):
+    def verificar_orden(self,plato,despensa,ingredientes_plato):
         verificar = True
-        ingredientes_plato=list(plato.ingredientes.keys())
+        
         for i in range(len(plato.ingredientes)):
             if plato.ingredientes[ingredientes_plato[i]]<= despensa[ingredientes_plato[i]]:
                 verificar = True
@@ -22,8 +24,20 @@ class Chef:
         else:
             return False
 
-        
-        
 
+    def cocinar(self,plato,despensa):
+        ingredientes_plato=list(plato.ingredientes.keys())
+        cocinar_orden = self.verificar_orden(plato,despensa,ingredientes_plato)
 
-    def cocinar(self):
+        if cocinar_orden == True:
+            for p in range(len(plato.ingredientes)):
+                print(f"Tomando: {ingredientes_plato[p]}")
+                despensa[ingredientes_plato[p]]-= plato.ingredientes[ingredientes_plato[p]]
+            print("Cocinando...")
+            for i in tqdm(range(100)): #Para crear la barra de carga mientras cocina
+                sleep(0.001)
+            
+
+        else:
+            print("Lo sentimos, no hay suficientes ingredientes, realiza otro pedido")
+            #Luego hay que hacer que el cliente vuelva a hacer el pedido

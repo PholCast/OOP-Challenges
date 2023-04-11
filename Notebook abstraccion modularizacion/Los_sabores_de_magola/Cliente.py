@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from Menu import Menu,menu_restaurante
 
 @dataclass
 class Cliente:
@@ -36,15 +35,3 @@ class Cliente:
 
         
 
-def mostrar_menu(m):
-    for i  in range(len(m)):
-        print(f"{i+1} - {m[i].nombre}: ${m[i].precio}")
-
-
-daniela=Cliente("Daniela",8000)
-carta_menu=menu_restaurante.get_platos()
-mostrar_menu(carta_menu)
-
-retorno = daniela.pedido(menu_restaurante)
-
-print("Retorno es: ",retorno)
