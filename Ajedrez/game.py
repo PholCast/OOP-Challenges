@@ -4,6 +4,7 @@ from iconos import diccionario_iconos
 from Tablero import Tablero
 from Ficha import Ficha,Peon,Torre,Caballo,Alfil,Reina,Rey
 import unicodedata
+from ExcepcionesChess import EspacioVacio
 
 #Creamos el tablero
 board = Tablero()
@@ -62,7 +63,7 @@ alfiles(fichas_negras,fichas_blancas,diccionario_iconos)
 reina_negra = Reina("Negro",{"fila":0,"columna":3},diccionario_iconos)
 reina_blanca = Reina("Blanco",{"fila":7,"columna":3},diccionario_iconos)
 
-rey_negro = Rey("Negro",{"fila":0,"columna":4},diccionario_iconos)
+rey_negro = Rey("Negro",{"fila":0,"columna":4},diccionario_iconos) #cambio aquí
 rey_blanco = Rey("Blanco",{"fila":7,"columna":4},diccionario_iconos)
 
 fichas_blancas.append(reina_blanca)
@@ -71,8 +72,27 @@ fichas_blancas.append(rey_blanco)
 fichas_negras.append(reina_negra)
 fichas_negras.append(rey_negro)
 
-#print(fichas_negras,"\n\n",fichas_blancas)
+
 
 
 board.llenar_tablero(fichas_negras,fichas_blancas)
-board.mostrar_tablero()
+x="a"
+while(x!="terminar"):
+    board.mostrar_tablero()
+    print("comienzan las blancas")
+    fila_ficha = int(input("Selecciona la fila de la pieza que deseas mover"))
+    columna_ficha = int(input("Selecciona la columna de la pieza que deseas mover"))
+    if board.tablero[fila_ficha-1][columna_ficha-1]!=" ":
+        print(f"¡Haz seleccionado: {board.tablero[fila_ficha-1][columna_ficha-1].nombre}!")
+
+        fila_movimiento = int(input("Selecciona la fila a la que quieres mover la pieza"))
+        columna_movimiento = int(input("Selecciona la columna a la que quieres mover la pieza"))
+        
+        if(board.tablero[fila_ficha-1][columna_ficha-1].move(fila_movimiento,columna_movimiento)):
+            print("Movimiento correcto")
+            board.tablero[fila_movimiento-1][columna_movimiento-1] = board.tablero[fila_ficha-1][columna_ficha-1]
+            board.tablero[fila_ficha-1][columna_ficha-1]= " "
+    else:
+        raise EspacioVacio("ERROR, la posicion seleccionada no es una ficha, es un espacio vacío")
+    
+#ULTIMATE

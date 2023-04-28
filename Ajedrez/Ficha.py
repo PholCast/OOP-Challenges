@@ -1,6 +1,7 @@
 from  abc import ABC, abstractmethod, abstractproperty
 from dataclasses import dataclass
 from iconos import diccionario_iconos
+from ExcepcionesChess import ErrorMovimiento,ErrorColor
 @dataclass
 class Ficha(ABC):
     colorF: str
@@ -58,8 +59,20 @@ class Peon(Ficha):
         self.iconoF = iconos[self.nombreF][self.colorF]
     
 
-    def move(self):
-        self.posicion["vertical"] += 1  #configurar
+    def move(self,fila,columna):
+        if self.colorF == "Negro":
+            if columna-1 == self.posicion["columna"] and fila-1==self.posicion["fila"]+1:
+                self.posicionF["fila"] += 1
+                return True
+            else:
+                raise ErrorMovimiento("MOVIMIENTO INVALIDO")
+        else:
+            if columna-1 == self.posicion["columna"] and fila-1==self.posicion["fila"]-1:
+                self.posicionF["fila"] -= 1
+                return True
+            else:
+                raise ErrorMovimiento("MOVIMIENTO INVALIDO")
+            
 
 class Torre(Ficha):
     def __init__(self,color,posicion,iconos):
@@ -94,7 +107,10 @@ class Alfil(Ficha):
     
 class Reina(Ficha):
     def __init__(self,color,posicion,iconos):
-        self.colorF = color
+        if color == "Negro" or color == "Blanco":
+            self.colorF = color
+        else: 
+            raise ErrorColor(f"ERROR, EL COLOR {color} NO ES VALIDO")
         self.nombreF = "Reina"
         self.posicionF = posicion
         self.iconoF = iconos[self.nombreF][self.colorF]
@@ -104,7 +120,10 @@ class Reina(Ficha):
     
 class Rey(Ficha):
     def __init__(self,color,posicion,iconos):
-        self.colorF = color
+        if color == "Negro" or color == "Blanco":
+            self.colorF = color
+        else: 
+            raise ErrorColor(f"ERROR, EL COLOR {color} NO ES VALIDO")
         self.nombreF = "Rey"
         self.posicionF = posicion
         self.iconoF = iconos[self.nombreF][self.colorF]

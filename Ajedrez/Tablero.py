@@ -18,7 +18,8 @@ class Tablero:
             self.tablero[lista_negra[i].posicion["fila"]][lista_negra[i].posicion["columna"]] = lista_negra[i]
         for j in range(16):
             self.tablero[lista_blanca[j].posicion["fila"]][lista_negra[j].posicion["columna"]] = lista_blanca[j]
-
+    
+    
 
 
 
