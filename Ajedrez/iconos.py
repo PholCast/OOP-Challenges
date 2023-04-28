@@ -1,3 +1,4 @@
+#CREANDO UN DICCIONARIO PARA ASIGNAR LOS ICONOS
 diccionario_iconos = {
 "Peón":{"Negro":" ♟ ","Blanco":" ♙ "},
 "Torre":{"Negro":" ♜ ","Blanco":" ♖ "},

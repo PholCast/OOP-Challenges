@@ -6,3 +6,6 @@ class ErrorColor(Exception):
 
 class EspacioVacio(Exception):
     pass
+
+class ErrorTurno(Exception):
+    pass

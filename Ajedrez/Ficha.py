@@ -1,7 +1,10 @@
+#IMPORTANDO LIBRERIAS Y ARCHIVOS
 from  abc import ABC, abstractmethod, abstractproperty
 from dataclasses import dataclass
 from iconos import diccionario_iconos
 from ExcepcionesChess import ErrorMovimiento,ErrorColor
+
+#CREANDO LA CLASE ABSTRACTA
 @dataclass
 class Ficha(ABC):
     colorF: str
@@ -82,8 +85,8 @@ class Torre(Ficha):
         self.iconoF = iconos[self.nombreF][self.colorF]
     
 
-    def move(self,mover_posicion):
-        self.posicion["vertical"] = mover #configurar
+    def move(self,fila,columna):
+        self.posicion["vertical"] = fila #configurar
     
 class Caballo(Ficha):
      def __init__(self,color,posicion,iconos):
@@ -106,6 +109,7 @@ class Alfil(Ficha):
         self.posicion["vertical"] = mover #configurar
     
 class Reina(Ficha):
+    #Error para ver si al dar un color, es diferente de los permitidos
     def __init__(self,color,posicion,iconos):
         if color == "Negro" or color == "Blanco":
             self.colorF = color
@@ -120,6 +124,7 @@ class Reina(Ficha):
     
 class Rey(Ficha):
     def __init__(self,color,posicion,iconos):
+        #Error para ver si al dar un color, es diferente de los permitidos
         if color == "Negro" or color == "Blanco":
             self.colorF = color
         else: 

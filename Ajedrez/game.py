@@ -4,7 +4,7 @@ from iconos import diccionario_iconos
 from Tablero import Tablero
 from Ficha import Ficha,Peon,Torre,Caballo,Alfil,Reina,Rey
 import unicodedata
-from ExcepcionesChess import EspacioVacio
+from ExcepcionesChess import EspacioVacio,ErrorTurno
 
 #Creamos el tablero
 board = Tablero()
@@ -77,12 +77,18 @@ fichas_negras.append(rey_negro)
 
 board.llenar_tablero(fichas_negras,fichas_blancas)
 x="a"
+turno = "Blanco"
+
 while(x!="terminar"):
     board.mostrar_tablero()
-    print("comienzan las blancas")
+    if turno == "Blanco":
+        print("Juegan las blancas")
+    else:
+        print("Juegan las negras")
     fila_ficha = int(input("Selecciona la fila de la pieza que deseas mover"))
     columna_ficha = int(input("Selecciona la columna de la pieza que deseas mover"))
-    if board.tablero[fila_ficha-1][columna_ficha-1]!=" ":
+    
+    if board.tablero[fila_ficha-1][columna_ficha-1]!=" " and board.tablero[fila_ficha-1][columna_ficha-1].color == turno :
         print(f"¡Haz seleccionado: {board.tablero[fila_ficha-1][columna_ficha-1].nombre}!")
 
         fila_movimiento = int(input("Selecciona la fila a la que quieres mover la pieza"))
@@ -92,7 +98,13 @@ while(x!="terminar"):
             print("Movimiento correcto")
             board.tablero[fila_movimiento-1][columna_movimiento-1] = board.tablero[fila_ficha-1][columna_ficha-1]
             board.tablero[fila_ficha-1][columna_ficha-1]= " "
+
+            if turno =="Blanco":
+                turno = "Negro"
+            else:
+                turno = "Blanco"
+    elif(board.tablero[fila_ficha-1][columna_ficha-1]!=" " and board.tablero[fila_ficha-1][columna_ficha-1].color != turno ):
+        raise ErrorTurno(f"ERROR, EL TURNO ACTUAL ES {turno}, intentaste mover una ficha del color contrario")
     else:
         raise EspacioVacio("ERROR, la posicion seleccionada no es una ficha, es un espacio vacío")
-    
 #ULTIMATE
