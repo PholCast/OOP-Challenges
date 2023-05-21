@@ -43,6 +43,7 @@ class Subchef:
 
         else:
             print("Lo sentimos, no hay suficientes ingredientes, realiza otro pedido")
+            return False
             #Luego hay que hacer que el cliente vuelva a hacer el pedido
     
     def entregar(self):
