@@ -55,5 +55,7 @@ json_cargado_final = json.dumps(json_cargado)
 with open("CreartxtConInfoJSON.txt","w") as f:
   f.write(json_cargado_final)
 
+print(json_cargado)
+
 with open("createJsonFile.json","w")as p:
-  p.write(json_cargado_final)
+  json.dump(json_cargado_final,p,indent = 2)
