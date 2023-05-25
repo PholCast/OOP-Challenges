@@ -1,0 +1,10 @@
+
+collected 5 items
+
+test_gestor_archivo.py::Test_Gestor_Archivo::test_generar_archivo PASSED                               [ 20%]
+test_gestor_archivo.py::Test_Gestor_Archivo::test_leer_archivo PASSED                                  [ 40%]
+test_gestor_archivo.py::Test_Gestor_Archivo::test_generar_nombres PASSED                               [ 60%]
+test_gestor_archivo.py::Test_Gestor_Archivo::test_generar_edades PASSED                                [ 80%]
+test_gestor_archivo.py::Test_Gestor_Archivo::test_crear_personas PASSED                                [100%]
+
+============================================= 5 passed in 0.09s =============================================
